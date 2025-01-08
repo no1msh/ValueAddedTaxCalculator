@@ -5,7 +5,7 @@ import io.kotest.matchers.shouldBe
 import com.no1msh.vat.price.Price
 import io.kotest.assertions.assertSoftly
 
-class VatCalculatorTest : BehaviorSpec({
+class VatCalculateByTotalPriceTest : BehaviorSpec({
     Given("부가세가 정수로 나누어 떨어지는 합계금액으로 5500원이 주어지고") {
         val total = Price.of(5500)
         val purchasePrice = Price.of(1100)

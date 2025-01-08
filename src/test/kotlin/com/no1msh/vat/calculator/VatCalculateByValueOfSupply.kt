@@ -1,6 +1,7 @@
 package com.no1msh.vat.calculator
 
 import com.no1msh.vat.price.Price
+import io.kotest.assertions.assertSoftly
 import io.kotest.core.spec.style.BehaviorSpec
 import io.kotest.matchers.shouldBe
 
@@ -28,6 +29,30 @@ class VatCalculateByValueOfSupply : BehaviorSpec({
 
             Then("부가세는 400원이다.") {
                 actual.vat shouldBe Price.of(450)
+            }
+        }
+    }
+
+    Given("부가세가 정수로 나누어 떨어지지 않는 공급가액들이 주어지고") {
+        // 부가세 계산시 소수점 아래 첫째자리 값이 4가 나오는 공급가액
+        val valueOfSupply1: Price = Price.of(1004)
+
+        // 부가세 계산시 소수점 아래 첫째자리 값이 5가 나오는 공급가액
+        val valueOfSupply2: Price = Price.of(1005)
+
+        When("매입액 없이, 공급가액을 기준삼아 부가세를 계산하면") {
+            val actual1 = VatCalculator.calculateByValueOfSupply(
+                valueOfSupply = valueOfSupply1,
+            )
+            val actual2 = VatCalculator.calculateByValueOfSupply(
+                valueOfSupply = valueOfSupply2,
+            )
+
+            Then("부가세는 소수점 아래 반올림 처리된다.") {
+                assertSoftly {
+                    actual1.vat shouldBe Price.of(100) // 100.4 -> 내림
+                    actual2.vat shouldBe Price.of(101) // 100.5 -> 올림
+                }
             }
         }
     }

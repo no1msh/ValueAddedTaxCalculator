@@ -30,12 +30,16 @@ object VatCalculator {
         purchasePrice: Price = Price.ZERO,
     ): ProductPrice {
         val valueOfSupplyWithoutPurchasePrice = valueOfSupply - purchasePrice
-        val vat = valueOfSupplyWithoutPurchasePrice / Price.of(10)
+        val vatRate = BigDecimal(0.1)
+
+        val vat: BigDecimal = BigDecimal(valueOfSupply.value).multiply(vatRate)
+        val vatPrice = vat.toHalfUpPrice()
+
         return ProductPrice(
             purchasePrice = purchasePrice,
             valueOfSupply = valueOfSupply,
-            vat = vat,
-            total = valueOfSupplyWithoutPurchasePrice + vat,
+            vat = vatPrice,
+            total = valueOfSupplyWithoutPurchasePrice + vatPrice,
         )
     }
 }

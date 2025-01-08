@@ -55,4 +55,11 @@ class PriceTest : AnnotationSpec() {
 
         actual shouldBe Price.of(100)
     }
+
+    @Test
+    fun `금액은 서로 나눌 수 있다`() {
+        val actual = Price.of(10) / Price.of(10)
+
+        actual shouldBe Price.of(1)
+    }
 }

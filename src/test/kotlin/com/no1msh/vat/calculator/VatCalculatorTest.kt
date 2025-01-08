@@ -1,6 +1,7 @@
+package com.no1msh.vat.calculator
+
 import io.kotest.core.spec.style.BehaviorSpec
 import io.kotest.matchers.shouldBe
-import com.no1msh.vat.calculator.VatCalculator
 import com.no1msh.vat.price.Price
 import io.kotest.assertions.assertSoftly
 

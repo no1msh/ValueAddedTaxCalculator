@@ -23,5 +23,5 @@ tasks.withType<Test>().configureEach {
 }
 
 tasks.withType<KotlinCompile> {
-    kotlinOptions.jvmTarget = "11"
+    kotlinOptions.jvmTarget = "17"
 }

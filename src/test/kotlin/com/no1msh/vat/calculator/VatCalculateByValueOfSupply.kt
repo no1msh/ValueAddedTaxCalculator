@@ -1,6 +1,7 @@
 package com.no1msh.vat.calculator
 
 import com.no1msh.vat.price.Price
+import com.no1msh.vat.price.ProductPrice
 import io.kotest.assertions.assertSoftly
 import io.kotest.core.spec.style.BehaviorSpec
 import io.kotest.matchers.shouldBe
@@ -11,7 +12,7 @@ class VatCalculateByValueOfSupply : BehaviorSpec({
         val purchasePrice = Price.of(500)
 
         When("매입액 없이, 공급가액을 기준삼아 부가세를 계산하면") {
-            val actual = VatCalculator.calculateByValueOfSupply(
+            val actual: ProductPrice = VatCalculator.calculateByValueOfSupply(
                 valueOfSupply = valueOfSupply,
                 purchasePrice = Price.ZERO,
             )
@@ -22,7 +23,7 @@ class VatCalculateByValueOfSupply : BehaviorSpec({
         }
 
         When("매입액 있이, 공급가액을 기준삼아 부가세를 계산하면") {
-            val actual = VatCalculator.calculateByValueOfSupply(
+            val actual: ProductPrice = VatCalculator.calculateByValueOfSupply(
                 valueOfSupply = valueOfSupply,
                 purchasePrice = purchasePrice,
             )
@@ -41,10 +42,10 @@ class VatCalculateByValueOfSupply : BehaviorSpec({
         val valueOfSupply2: Price = Price.of(1005)
 
         When("매입액 없이, 공급가액을 기준삼아 부가세를 계산하면") {
-            val actual1 = VatCalculator.calculateByValueOfSupply(
+            val actual1: ProductPrice = VatCalculator.calculateByValueOfSupply(
                 valueOfSupply = valueOfSupply1,
             )
-            val actual2 = VatCalculator.calculateByValueOfSupply(
+            val actual2: ProductPrice = VatCalculator.calculateByValueOfSupply(
                 valueOfSupply = valueOfSupply2,
             )
 

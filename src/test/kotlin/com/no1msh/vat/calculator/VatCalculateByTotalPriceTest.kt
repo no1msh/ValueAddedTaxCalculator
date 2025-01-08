@@ -3,6 +3,7 @@ package com.no1msh.vat.calculator
 import io.kotest.core.spec.style.BehaviorSpec
 import io.kotest.matchers.shouldBe
 import com.no1msh.vat.price.Price
+import com.no1msh.vat.price.ProductPrice
 import io.kotest.assertions.assertSoftly
 
 class VatCalculateByTotalPriceTest : BehaviorSpec({
@@ -11,7 +12,7 @@ class VatCalculateByTotalPriceTest : BehaviorSpec({
         val purchasePrice = Price.of(1100)
 
         When("매입액 없이, 합계금액을 기준삼아 부가세를 계산하면") {
-            val actual = VatCalculator.calculateByTotal(
+            val actual: ProductPrice = VatCalculator.calculateByTotal(
                 total = total,
                 purchasePrice = Price.ZERO,
             )
@@ -22,7 +23,7 @@ class VatCalculateByTotalPriceTest : BehaviorSpec({
         }
 
         When("매입액 있이, 합계금액을 기준삼아 부가세를 계산하면") {
-            val actual = VatCalculator.calculateByTotal(
+            val actual: ProductPrice = VatCalculator.calculateByTotal(
                 total = total,
                 purchasePrice = purchasePrice,
             )
@@ -41,11 +42,11 @@ class VatCalculateByTotalPriceTest : BehaviorSpec({
         val total2: Price = Price.of(5000)
 
         When("매입액 없이, 합계금액을 기준삼아 부가세를 계산하면") {
-            val actual1 = VatCalculator.calculateByTotal(
+            val actual1: ProductPrice = VatCalculator.calculateByTotal(
                 total = total1,
                 purchasePrice = Price.ZERO,
             )
-            val actual2 = VatCalculator.calculateByTotal(
+            val actual2: ProductPrice = VatCalculator.calculateByTotal(
                 total = total2,
                 purchasePrice = Price.ZERO,
             )

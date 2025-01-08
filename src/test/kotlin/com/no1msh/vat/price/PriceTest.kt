@@ -41,4 +41,11 @@ class PriceTest : AnnotationSpec() {
 
         actual shouldBe Price.of(30)
     }
+
+    @Test
+    fun `금액은 서로 뺄 수 있다`() {
+        val actual = Price.of(30) - Price.of(20)
+
+        actual shouldBe Price.of(10)
+    }
 }

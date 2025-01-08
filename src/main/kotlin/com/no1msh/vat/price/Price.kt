@@ -7,6 +7,10 @@ value class Price private constructor(val value: Int) {
         return of(this.value + target.value)
     }
 
+    operator fun minus(target: Price): Price {
+        return of(this.value - target.value)
+    }
+
     companion object {
         internal const val MINIMUM_VALUE = 0
         internal const val MAXIMUM_VALUE = 1_000_000_000

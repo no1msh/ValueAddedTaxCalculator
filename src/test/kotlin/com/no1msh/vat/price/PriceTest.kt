@@ -1,10 +1,11 @@
+package com.no1msh.vat.price
+
 import io.kotest.assertions.assertSoftly
 import io.kotest.assertions.throwables.shouldNotThrowAny
 import io.kotest.core.spec.style.AnnotationSpec
 import io.kotest.matchers.shouldBe
-import org.example.Price
-import org.example.Price.Companion.MAXIMUM_VALUE
-import org.example.Price.Companion.MINIMUM_VALUE
+import com.no1msh.vat.price.Price.Companion.MAXIMUM_VALUE
+import com.no1msh.vat.price.Price.Companion.MINIMUM_VALUE
 import org.junit.jupiter.api.assertThrows
 
 class PriceTest : AnnotationSpec() {

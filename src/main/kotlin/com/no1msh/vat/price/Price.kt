@@ -1,4 +1,4 @@
-package org.example
+package com.no1msh.vat.price
 
 @JvmInline
 value class Price private constructor(val value: Int) {

@@ -24,4 +24,18 @@ object VatCalculator {
             total = total,
         )
     }
+
+    fun calculateByValueOfSupply(
+        valueOfSupply: Price,
+        purchasePrice: Price = Price.ZERO,
+    ): ProductPrice {
+        val valueOfSupplyWithoutPurchasePrice = valueOfSupply - purchasePrice
+        val vat = valueOfSupplyWithoutPurchasePrice / Price.of(10)
+        return ProductPrice(
+            purchasePrice = purchasePrice,
+            valueOfSupply = valueOfSupply,
+            vat = vat,
+            total = valueOfSupplyWithoutPurchasePrice + vat,
+        )
+    }
 }

@@ -11,9 +11,15 @@ value class Price private constructor(val value: Int) {
         return of(this.value - target.value)
     }
 
+    operator fun times(target: Price): Price {
+        return of(this.value * target.value)
+    }
+
     companion object {
         internal const val MINIMUM_VALUE = 0
         internal const val MAXIMUM_VALUE = 1_000_000_000
+
+        val ZERO = of(0)
 
         fun of(newValue: Int): Price {
             require(newValue in MINIMUM_VALUE..MAXIMUM_VALUE) {

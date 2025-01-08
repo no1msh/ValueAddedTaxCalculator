@@ -34,4 +34,11 @@ class PriceTest : AnnotationSpec() {
             shouldNotThrowAny { Price.of(1_000_000_000) }
         }
     }
+
+    @Test
+    fun `금액은 서로 더할 수 있다`() {
+        val actual = Price.of(10) + Price.of(20)
+
+        actual shouldBe Price.of(30)
+    }
 }

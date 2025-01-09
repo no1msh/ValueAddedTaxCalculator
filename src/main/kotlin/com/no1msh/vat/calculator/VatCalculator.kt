@@ -9,18 +9,18 @@ import java.math.RoundingMode
 object VatCalculator {
     fun calculateByTotal(
         total: Price,
-        purchasePrice: Price = Price.ZERO
     ): ProductPrice {
-        val valueOfSupply: Price = total - purchasePrice
         val vatRate: BigDecimal =
             BigDecimal(1).divide(BigDecimal(11), 10, RoundingMode.HALF_UP)
 
-        val vat: BigDecimal = BigDecimal(valueOfSupply.value).multiply(vatRate)
+        val vat: BigDecimal = BigDecimal(total.value).multiply(vatRate)
+
+        val halfUpVat: Price = vat.toHalfUpPrice()
 
         return ProductPrice(
-            purchasePrice = purchasePrice,
-            valueOfSupply = valueOfSupply,
-            vat = vat.toHalfUpPrice(),
+            purchasePrice = Price.ZERO,
+            valueOfSupply = total - halfUpVat,
+            vat = halfUpVat,
             total = total,
         )
     }

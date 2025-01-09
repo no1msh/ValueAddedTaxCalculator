@@ -19,7 +19,6 @@ class VatCalculateByValueOfSupplyTest : BehaviorSpec({
 
             Then("부가세는 500원이다.") {
                 actual shouldBe ProductPrice(
-                    purchasePrice = Price.ZERO,
                     valueOfSupply = Price.of(5000),
                     vat = Price.of(500),
                     total = Price.of(5500)
@@ -62,13 +61,11 @@ class VatCalculateByValueOfSupplyTest : BehaviorSpec({
             Then("부가세는 소수점 아래 반올림 처리된다.") {
                 assertSoftly {
                     actual1 shouldBe ProductPrice(
-                        purchasePrice = Price.ZERO,
                         valueOfSupply = valueOfSupply1,
                         vat = Price.of(100), // 100.4 -> 내림
                         total = Price.of(1104)
                     )
                     actual2 shouldBe ProductPrice(
-                        purchasePrice = Price.ZERO,
                         valueOfSupply = valueOfSupply2,
                         vat = Price.of(101), // 100.5 -> 올림
                         total = Price.of(1106)

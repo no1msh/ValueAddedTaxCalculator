@@ -7,7 +7,7 @@ import io.kotest.matchers.shouldBe
 import java.math.BigDecimal
 import java.math.RoundingMode
 
-class BigDecimalMapperTest: AnnotationSpec() {
+class BigDecimalMapperTest : AnnotationSpec() {
     @Test
     fun `소수값이 있는 BigDecimal을 Price 객체로 바꿀 때 반올림 한다`() {
         val approximateOne = BigDecimal(10).divide(BigDecimal(11), 10, RoundingMode.UP)

@@ -1,15 +1,15 @@
 package com.no1msh.vat.calculator
 
-import io.kotest.core.spec.style.BehaviorSpec
-import io.kotest.matchers.shouldBe
 import com.no1msh.vat.price.Price
 import com.no1msh.vat.price.ProductPrice
 import io.kotest.assertions.assertSoftly
+import io.kotest.core.spec.style.BehaviorSpec
+import io.kotest.matchers.shouldBe
 
 class VatCalculateByTotalPriceTest : BehaviorSpec({
     Given("부가세가 정수로 나누어 떨어지는 합계금액으로 5500원이 주어지고") {
         val total = Price.of(5500)
-1
+
         When("매입액 없이, 합계금액을 기준삼아 부가세를 계산하면") {
             val actual: ProductPrice = VatCalculator.calculateByTotal(
                 total = total,

@@ -1,8 +1,8 @@
 package com.no1msh.vat.calculator
 
+import com.no1msh.vat.mapper.toHalfUpPrice
 import com.no1msh.vat.price.Price
 import com.no1msh.vat.price.ProductPrice
-import com.no1msh.vat.mapper.toHalfUpPrice
 import java.math.BigDecimal
 import java.math.RoundingMode
 

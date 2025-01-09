@@ -6,7 +6,7 @@ plugins {
 }
 
 group = "com.no1msh"
-version = "1.0.1"
+version = "1.0.2"
 
 repositories {
     mavenCentral()
@@ -15,10 +15,10 @@ repositories {
 publishing {
     publications {
         create<MavenPublication>("mavenJava") {
-            from(components["java"])
+            from(components["java"]) // Java 컴포넌트 사용
             groupId = "com.github.no1msh"
             artifactId = "vat-calculator"
-            version = "1.0.1"
+            version = "1.0.2"
         }
     }
 }
@@ -32,6 +32,12 @@ dependencies {
 
 tasks.withType<Test>().configureEach {
     useJUnitPlatform()
+}
+
+java {
+    toolchain {
+        languageVersion.set(JavaLanguageVersion.of(17))
+    }
 }
 
 tasks.withType<KotlinCompile> {

@@ -26,20 +26,31 @@ object VatCalculator {
     }
 
     fun calculateByValueOfSupply(
-        valueOfSupply: Price,
+        totalSales: Price,
         purchasePrice: Price = Price.ZERO,
     ): ProductPrice {
-        val valueOfSupplyWithoutPurchasePrice = valueOfSupply - purchasePrice
         val vatRate = BigDecimal(0.1)
 
-        val vat: BigDecimal = BigDecimal(valueOfSupply.value).multiply(vatRate)
-        val vatPrice = vat.toHalfUpPrice()
+        val totalSalesVat: BigDecimal = BigDecimal(totalSales.value).multiply(vatRate)
+
+        if (purchasePrice == Price.ZERO) {
+            val vatPrice = totalSalesVat.toHalfUpPrice()
+            return ProductPrice(
+                purchasePrice = purchasePrice,
+                valueOfSupply = totalSales,
+                vat = vatPrice,
+                total = totalSales + vatPrice,
+            )
+        }
+
+        val purchaseVat: BigDecimal = BigDecimal(purchasePrice.value).multiply(vatRate)
+        val vatPrice = (totalSalesVat - purchaseVat).toHalfUpPrice()
 
         return ProductPrice(
             purchasePrice = purchasePrice,
-            valueOfSupply = valueOfSupply,
+            valueOfSupply = totalSales,
             vat = vatPrice,
-            total = valueOfSupplyWithoutPurchasePrice + vatPrice,
+            total = totalSales + vatPrice,
         )
     }
 }

@@ -1,5 +1,26 @@
 # 부가가치세(VAT) 계산기
 
+## 프로젝트 추가 방법
+
+1. JitPack repository를 추가합니다.
+```kotlin
+dependencyResolutionManagement {
+  repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
+  repositories {
+    google()
+    mavenCentral()
+    maven { url = uri("https://jitpack.io") }
+  }
+}
+```
+
+2. 의존성을 추가합니다.
+```kotlin
+dependencies { 
+    implementation("com.github.no1msh:ValueAddedTaxCalculator:1.0.2")
+}
+```
+
 ## 기능 목록
 - **합계금액을 기준**으로 부가세를 계산할 수 있다.
   - ex) **부가세를 포함하여** 5000원일 때의 부가세가 얼마인지 계산
